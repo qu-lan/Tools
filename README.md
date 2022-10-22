@@ -21,8 +21,8 @@
 - `建议按顺时针框区，且不宜过大`
 
 ## 效果示例
-![效果图1](https://github.com/qu-lan/Tools/tree/main/readmepic/example.gif)
-![效果图2](https://github.com/qu-lan/Tools/tree/main/readmepic/2.jpeg)
+![效果图1](./readmepic/example.gif)
+![效果图2](./readmepic/2.jpeg)
 ## exe获取
-![6183]https://pan.baidu.com/s/1vI-93bnAx4FTtlpJqKQnuQ?pwd=618a
+无需安装环境，打包的exe文件可获取自[此网址](https://pan.baidu.com/s/1vI-93bnAx4FTtlpJqKQnuQ?pwd=618a)
 
