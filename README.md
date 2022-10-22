@@ -1,5 +1,9 @@
 # 局部放大小工具
 
+## 使用条件
+ - 安装cv2，numpy，matplotlib，tqdm
+
+
 ## 使用步骤
 - 将图片放在`picss`文件夹中
 - 默认保存在`bpart`文件夹中
@@ -17,6 +21,8 @@
 - `建议按顺时针框区，且不宜过大`
 
 ## 效果示例
-![效果图1](./readmepic/example.gif)
-![效果图2](./readmepic/2.jpeg)
+![效果图1](https://github.com/qu-lan/Tools/tree/main/readmepic/example.gif)
+![效果图2](https://github.com/qu-lan/Tools/tree/main/readmepic/2.jpeg)
+## exe获取
+![6183]https://pan.baidu.com/s/1vI-93bnAx4FTtlpJqKQnuQ?pwd=618a
 
