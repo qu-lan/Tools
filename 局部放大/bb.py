@@ -2,8 +2,8 @@
 # -*- coding: UTF-8 -*-
 '''
 @File    ：bb.py
-@Author  ：Xiaodong Qian
-@Function:
+@Author  ：Xiaodong
+@Function: 左键实时绘制矩形框及坐标；右键撤销上一个框；中键滚动后，移动鼠标动态放大光标处；点击中键退出
 @Date    ：2022/10/23 16:49 
 '''
 
@@ -15,7 +15,6 @@ from cv2 import imread, imshow, waitKey, resize, rectangle, circle, putText, get
 from copy import deepcopy
 from os import listdir, makedirs
 from os.path import join as opjoin
-
 
 from matplotlib.pyplot import figure, axis, xticks, yticks, savefig
 from matplotlib.pyplot import imshow as pimshow
@@ -52,8 +51,7 @@ def Partial_magnification(pic, target, location='lower_right', ratio=1):
     return img, pic
 
 
-'''左键起始与释放绘制矩形及坐标，右键回退，中键滚动动态放大，中键退出'''
-def on_EVENT_LBUTTONDOWN(event, x, y, flags, param):
+def on_EVENT_LBUTTONDOWN(event, x, y, flags, param):  # 鼠标事件函数
     img = param[0]
     flag = param[1]-1
     if event == EVENT_LBUTTONDOWN:  # 左键按下，获得起始点坐标
@@ -64,13 +62,13 @@ def on_EVENT_LBUTTONDOWN(event, x, y, flags, param):
         setMouseCallback("image", on_EVENT_LBUTTONDOWN, param=[img, 1])
         point.append((x, y))
         target.append((x, y))
-    elif flags == EVENT_FLAG_LBUTTON:  # 左键长按，事实显示框与坐标
+    elif flags == EVENT_FLAG_LBUTTON:  # 左键长按，实时显示框与坐标
         point.append((x, y))
         for i in range(0, len(point), 2):
             rectangle(img, point[i], point[i+1], (0, 255, 0), thickness=1, lineType=8, shift=0)
             circle(img, target[i], 1, (255, 0, 0), thickness=-1)
             circle(img, point[i], 1, (255, 0, 0), thickness=-1)
-            putText(img, str(point[i]), (point[i][0], point[i][1]), FONT_HERSHEY_COMPLEX_SMALL, 0.8, (0, 0, 0),thickness=1)
+            putText(img, str(point[i]), (point[i][0], point[i][1]), FONT_HERSHEY_COMPLEX_SMALL, 0.8, (0, 0, 0), thickness=1)
             putText(img, str(point[i+1]), point[i+1], FONT_HERSHEY_COMPLEX_SMALL, 0.8, (255, 0, 0), thickness=1)
         imshow("image", img)
         point.pop(-1)
@@ -82,7 +80,7 @@ def on_EVENT_LBUTTONDOWN(event, x, y, flags, param):
         for i in range(0, len(target), 2):
             rectangle(img, point[i], point[i+1], (0, 255, 0), thickness=1, lineType=8, shift=0)
             circle(img, point[i], 1, (255, 0, 0), thickness=-1)
-            putText(img, str(point[i]), (point[i][0], point[i][1]), FONT_HERSHEY_COMPLEX_SMALL, 0.8, (0, 0, 0),thickness=1)
+            putText(img, str(point[i]), (point[i][0], point[i][1]), FONT_HERSHEY_COMPLEX_SMALL, 0.8, (0, 0, 0), thickness=1)
             putText(img, str(point[i+1]), point[i+1], FONT_HERSHEY_COMPLEX_SMALL, 0.8, (255, 0, 0), thickness=1)
         imshow("image", img)
     elif event == EVENT_RBUTTONDOWN:  # 右键按下，撤销前一个框的数据
@@ -92,14 +90,14 @@ def on_EVENT_LBUTTONDOWN(event, x, y, flags, param):
             pass
         added = img - copyImg
         img = img - added
-        if len(target)>0:
+        if len(target) > 0:
             for _ in range(2):
                 target.pop(-1)
                 point.pop(-1)
         for i in range(0, len(target), 2):
             rectangle(img, point[i], point[i+1], (0, 255, 0), thickness=1, lineType=8, shift=0)
             circle(img, point[i], 1, (255, 0, 0), thickness=-1)
-            putText(img, str(point[i]), (point[i][0], point[i][1]), FONT_HERSHEY_COMPLEX_SMALL, 0.8, (0, 0, 0),thickness=1)
+            putText(img, str(point[i]), (point[i][0], point[i][1]), FONT_HERSHEY_COMPLEX_SMALL, 0.8, (0, 0, 0), thickness=1)
             putText(img, str(point[i+1]), point[i+1], FONT_HERSHEY_COMPLEX_SMALL, 0.8, (255, 0, 0), thickness=1)
         imshow("image", img)
         setMouseCallback("image", on_EVENT_LBUTTONDOWN, param=[img - added, 1])
