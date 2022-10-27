@@ -21,7 +21,8 @@
 - `建议按顺时针框区，且不宜过大`
 
 ## 效果示例
-![效果图1](./readmepic/example.gif)
+![效果图1](./readmepic/cat_move.gif)
+![效果图1](./readmepic/cat_rectange.gif)
 ![效果图2](./readmepic/2.jpeg)
 ## exe获取
 无需安装环境，打包的exe文件可获取自[网盘网址](https://pan.baidu.com/s/1x7QJ2drYH8nsEcOByLf8Zw?pwd=iivj)
